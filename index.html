@@ -5,72 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TerraWeb | Proyecto Unity</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background: radial-gradient(circle at top, #0f172a 0%, #020617 100%);
-            color: white;
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
         }
-        .glass {
+
+        /* Fondo con efecto de estrellas suave */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            z-index: -1;
+        }
+
+        .main-card {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            text-align: center;
         }
-        .widget-container {
-            transition: transform 0.3s ease;
-            filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.3));
+
+        .glow-effect {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: #3b82f6;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
-        .widget-container:hover {
-            transform: translateY(-5px);
+
+        /* Estilo para que el iframe se sienta integrado */
+        .iframe-wrapper {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
         }
     </style>
 </head>
-<body class="flex flex-col items-center p-6">
+<body>
 
-    <nav class="w-full max-w-5xl flex justify-between items-center py-10">
-        <div class="text-2xl font-bold tracking-tighter text-blue-400">TERRA<span class="text-white">WEB</span></div>
-        <a href="https://istec-for340.itch.io/terraweb" target="_blank" class="text-sm text-gray-400 hover:text-white transition">Ver Perfil en itch.io</a>
-    </nav>
+    <div class="stars"></div>
+    <div class="glow-effect"></div>
 
-    <main class="w-full max-w-4xl text-center flex flex-col items-center">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-emerald-200 to-blue-500">
-            Explora la Tierra en Unity
-        </h1>
-        <p class="text-gray-400 text-lg mb-12 max-w-xl">
-            Una experiencia interactiva diseñada para observar y entender nuestro planeta. Haz clic en el recuadro de abajo para comenzar la aventura.
-        </p>
+    <div class="main-card max-w-[700px] w-full mx-4">
+        <header class="mb-8">
+            <h1 class="text-4xl font-bold tracking-tight mb-2">
+                Terra<span class="text-blue-500">Web</span>
+            </h1>
+            <p class="text-gray-400 font-light italic">Proyecto de Simulación del Planeta Tierra</p>
+        </header>
 
-        <div class="widget-container glass p-4 rounded-2xl mb-12">
+        <div class="iframe-wrapper mb-8">
             <iframe 
                 frameborder="0" 
                 src="https://itch.io/embed/4541364" 
                 width="552" 
-                height="167" 
-                class="rounded-lg">
+                height="167">
                 <a href="https://istec-for340.itch.io/terraweb">TerraWeb by ISTEC-FOR340</a>
             </iframe>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-8">
-            <div class="glass p-6 rounded-2xl text-left">
-                <h3 class="text-blue-400 font-bold mb-2">Visuales</h3>
-                <p class="text-sm text-gray-400">Modelado 3D optimizado para experiencias web fluidas.</p>
+        <section class="space-y-4">
+            <p class="text-sm text-gray-300 leading-relaxed">
+                Bienvenido a la simulación interactiva. El widget de arriba permite acceder 
+                directamente a la versión de <strong>Unity</strong> sin salir de esta página.
+            </p>
+            
+            <div class="flex justify-center gap-6 pt-4">
+                <div class="text-center">
+                    <span class="block text-blue-400 font-bold text-xl">1.0</span>
+                    <span class="text-[10px] uppercase text-gray-500 tracking-widest">Versión</span>
+                </div>
+                <div class="border-l border-white/10 h-10"></div>
+                <div class="text-center">
+                    <span class="block text-blue-400 font-bold text-xl">3D</span>
+                    <span class="text-[10px] uppercase text-gray-500 tracking-widest">Motor</span>
+                </div>
+                <div class="border-l border-white/10 h-10"></div>
+                <div class="text-center">
+                    <span class="block text-blue-400 font-bold text-xl">Web</span>
+                    <span class="text-[10px] uppercase text-gray-500 tracking-widest">Plataforma</span>
+                </div>
             </div>
-            <div class="glass p-6 rounded-2xl text-left">
-                <h3 class="text-blue-400 font-bold mb-2">Interacción</h3>
-                <p class="text-sm text-gray-400">Controles intuitivos para navegar por el entorno global.</p>
-            </div>
-            <div class="glass p-6 rounded-2xl text-left">
-                <h3 class="text-blue-400 font-bold mb-2">Tecnología</h3>
-                <p class="text-sm text-gray-400">Desarrollado con Unity 2022+ y WebGL 2.0.</p>
-            </div>
-        </div>
-    </main>
+        </section>
+    </div>
 
-    <footer class="mt-24 pb-12 text-gray-600 text-xs tracking-widest uppercase">
-        © 2026 ISTEC-FOR340 | Hecho con Unity
+    <footer class="mt-8 text-gray-600 text-[11px] uppercase tracking-[3px]">
+        Desarrollado por ISTEC-FOR340 • 2026
     </footer>
 
 </body>
